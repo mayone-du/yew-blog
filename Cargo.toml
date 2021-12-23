@@ -1,9 +1,12 @@
 [package]
+edition = "2018"
 name = "yew-blog"
 version = "0.1.0"
-edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["rlib", "cdylib"]
 
 [dependencies]
 yew = "0.19.3"
