@@ -3,4 +3,5 @@
 ## やること
 
 - md to html
+- use tailwindcss
 - deploy
