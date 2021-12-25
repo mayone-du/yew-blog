@@ -5,11 +5,15 @@ pub struct Props;
 
 pub struct Button;
 
+enum Msg {
+  Reset,
+}
+
 impl Component for Button {
   type Message = ();
   type Properties = Props;
 
-  fn create(ctx: &Context<Self>) -> Self {
+  fn create(_ctx: &Context<Self>) -> Self {
     Button
   }
 

@@ -1,5 +1,8 @@
-mod components;
 use yew::prelude::*;
+use yew_router::prelude::*;
+
+mod components;
+mod routes;
 
 enum Msg {
   AddOne,
@@ -36,6 +39,7 @@ impl Component for Model {
         <button onclick={link.callback(|_| Msg::AddOne)}>{ "+1" }</button>
         <p>{ self.value }</p>
         <components::button::Button />
+        <Link<routes::app_routes::AppRoutes> to={routes::app_routes::AppRoutes::Home}>{"404"}</Link<routes::app_routes::AppRoutes>>
       </div>
     }
   }
