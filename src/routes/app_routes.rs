@@ -4,6 +4,8 @@ use yew_router::prelude::*;
 pub enum AppRoutes {
   #[at("/")]
   Home,
+  #[at("/profile")]
+  Profile,
   #[not_found]
   #[at("/404")]
   NotFound,
