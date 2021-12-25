@@ -1,3 +1,4 @@
+mod components;
 use yew::prelude::*;
 
 enum Msg {
@@ -31,10 +32,11 @@ impl Component for Model {
     // This gives us a component's "`Scope`" which allows us to send messages, etc to the component.
     let link = ctx.link();
     html! {
-        <div>
-            <button onclick={link.callback(|_| Msg::AddOne)}>{ "+1" }</button>
-            <p>{ self.value }</p>
-        </div>
+      <div>
+        <button onclick={link.callback(|_| Msg::AddOne)}>{ "+1" }</button>
+        <p>{ self.value }</p>
+        <components::button::Button />
+      </div>
     }
   }
 }
