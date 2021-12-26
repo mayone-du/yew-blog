@@ -7,9 +7,7 @@ pub struct Props;
 
 pub struct Header;
 
-enum Msg {
-  Reset,
-}
+enum Msg {}
 
 impl Component for Header {
   type Message = ();

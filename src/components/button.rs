@@ -19,7 +19,7 @@ impl Component for Button {
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
-      <button>{"hoge"}</button>
+      <button class="block bg-red-200">{"hoge"}</button>
     }
   }
 }
