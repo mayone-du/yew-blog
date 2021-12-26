@@ -1,3 +1,4 @@
+use crate::components::markdown::Markdown;
 use crate::layouts::main_layout::MainLayout;
 use yew::{html, Component, Context, Html, Properties};
 
@@ -18,6 +19,7 @@ impl Component for IndexPage {
     html! {
       <MainLayout>
         <h1>{"Index Page"}</h1>
+        <Markdown />
       </MainLayout>
     }
   }
