@@ -1,4 +1,4 @@
-use crate::components::header::Header;
+use crate::layouts::header::Header;
 use yew::{html, Children, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]

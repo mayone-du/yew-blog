@@ -1,3 +1,4 @@
+use crate::layouts::main_layout::MainLayout;
 use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
@@ -15,7 +16,9 @@ impl Component for ProfilePage {
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
-      <div>{"ProfilePage"}</div>
+      <MainLayout>
+        {"ProfilePage"}
+      </MainLayout>
     }
   }
 }

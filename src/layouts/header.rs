@@ -19,11 +19,17 @@ impl Component for Header {
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
-      <header>
+      <header class="flex justify-between px-40 border-b">
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold">{"Yuki Ishikawa"}</h1>
+        </div>
         <nav>
-          <ul>
+          <ul class="flex">
             <li>
-              <Link<AppRoutes> to={AppRoutes::Profile}>{"Profile"}</Link<AppRoutes>>
+              <Link<AppRoutes> classes="ml-2 block text-blue-500 underline" to={AppRoutes::Home}>{"Home"}</Link<AppRoutes>>
+            </li>
+            <li>
+              <Link<AppRoutes> classes="ml-2 block text-blue-500 underline" to={AppRoutes::Profile}>{"Profile"}</Link<AppRoutes>>
             </li>
           </ul>
         </nav>
