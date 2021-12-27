@@ -555,6 +555,7 @@ name = "yew-blog"
 version = "0.1.0"
 dependencies = [
  "pulldown-cmark",
+ "web-sys",
  "yew",
  "yew-router",
 ]

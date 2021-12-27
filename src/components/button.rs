@@ -5,9 +5,9 @@ pub struct Props;
 
 pub struct Button;
 
-enum Msg {
-  Reset,
-}
+// enum Msg {
+//   Reset,
+// }
 
 impl Component for Button {
   type Message = ();
