@@ -17,9 +17,26 @@ impl Component for Markdown {
   }
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
+    let content = std::fs::read_to_string("src/articles/first.md");
+    let content = match content {
+      Ok(content) => {
+        println!("{}", content);
+        content
+      }
+      Err(e) => {
+        println!("{}", e);
+        "Markdown Error!".to_string()
+      }
+    };
+    // let parser = Parser::new(&content);
+    // let mut html_buf = String::new();
+    // push_html(&mut html_buf, parser);
+    // println!("hogeeeeeeeeeeeeeee{}", content);
+    // println!("{}", html_buf);
     html! {
       <article>
-        {"blog"}
+      {content}
+        // {html_buf}
       </article>
     }
   }
