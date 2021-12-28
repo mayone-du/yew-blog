@@ -3,15 +3,21 @@
 ## Build
 
 ```
-trunk serve
-```
-
-```
 npm run build:talwindcss
 ```
 
-## やること
+```
+trunk serve
+```
 
+## TODO
+
+- read .md file
 - md to html
-- use tailwindcss
 - deploy
+
+## DONE!
+
+- routing
+- layout
+- tailwindcss
