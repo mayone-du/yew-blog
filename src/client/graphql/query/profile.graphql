@@ -1,7 +1,0 @@
-query Profile {
-  viewer {
-    name
-    twitterUsername
-    url
-  }
-}
