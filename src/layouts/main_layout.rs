@@ -1,3 +1,4 @@
+use crate::layouts::footer::Footer;
 use crate::layouts::header::Header;
 use crate::layouts::sidebar::Sidebar;
 use yew::{html, Children, Component, Context, Html, Properties};
@@ -23,12 +24,14 @@ impl Component for MainLayout {
       <div>
         <Header />
 
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-3 gap-4 mx-60">
           <main class="col-span-2 border border-blue-300">
             { for ctx.props().children.iter() }
           </main>
           <Sidebar />
         </div>
+
+        <Footer />
       </div>
     }
   }
