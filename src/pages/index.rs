@@ -1,3 +1,4 @@
+use crate::components::article_list::ArticleList;
 use crate::components::markdown::Markdown;
 use crate::layouts::main_layout::MainLayout;
 use yew::{html, Component, Context, Html, Properties};
@@ -6,6 +7,8 @@ use yew::{html, Component, Context, Html, Properties};
 pub struct Props;
 
 pub struct IndexPage;
+
+// async fn fetch
 
 impl Component for IndexPage {
   type Message = ();
@@ -20,6 +23,7 @@ impl Component for IndexPage {
       <MainLayout>
         <h1>{"Index Page"}</h1>
         <Markdown />
+        <ArticleList />
       </MainLayout>
     }
   }

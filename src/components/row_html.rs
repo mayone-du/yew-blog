@@ -3,6 +3,7 @@ use yew::{virtual_dom::VNode, Component, Context, Html, Properties};
 
 pub enum Msg {}
 
+// TODO: Props Name
 #[derive(Debug, Clone, Eq, PartialEq, Properties)]
 pub struct RawHTMLProps {
   pub inner_html: String,
