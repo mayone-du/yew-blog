@@ -10,6 +10,8 @@ npm run build:talwindcss
 trunk serve
 ```
 
+download the schema.docs.graphql from github.
+
 ## TODO
 
 - read .md file

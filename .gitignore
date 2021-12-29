@@ -2,3 +2,5 @@
 /dist
 /node_modules
 tailwind.css
+schema.docs.graphql
+.env
