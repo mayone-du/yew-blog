@@ -37,7 +37,7 @@ impl From<JsValue> for FetchError {
 struct AllUsers;
 
 async fn fetch_users() -> Result<String, FetchError> {
-  let token = "Bearer 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";
+  let token = "Bearer hogehoge";
   let build_query = AllUsers::build_query(all_users::Variables {
     token: token.to_string(),
   });
