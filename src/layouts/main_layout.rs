@@ -1,4 +1,5 @@
 use crate::layouts::header::Header;
+use crate::layouts::sidebar::Sidebar;
 use yew::{html, Children, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
@@ -21,9 +22,13 @@ impl Component for MainLayout {
     html! {
       <div>
         <Header />
-        <main>
-          { for ctx.props().children.iter() }
-        </main>
+
+        <div class="grid grid-cols-3 gap-4">
+          <main class="col-span-2 border border-blue-300">
+            { for ctx.props().children.iter() }
+          </main>
+          <Sidebar />
+        </div>
       </div>
     }
   }

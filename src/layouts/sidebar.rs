@@ -1,24 +1,23 @@
-use crate::layouts::main_layout::MainLayout;
 use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
 pub struct Props;
 
-pub struct ProfilePage;
+pub struct Sidebar;
 
-impl Component for ProfilePage {
+impl Component for Sidebar {
   type Message = ();
   type Properties = Props;
 
   fn create(_ctx: &Context<Self>) -> Self {
-    ProfilePage
+    Sidebar
   }
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
-      <MainLayout>
-        <h1>{"ProfilePage"}</h1>
-      </MainLayout>
+      <aside class="block col-span-1 border">
+        {"aside"}
+      </aside>
     }
   }
 }

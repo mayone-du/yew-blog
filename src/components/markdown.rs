@@ -23,7 +23,7 @@ impl Component for Markdown {
     let mut html_buf = String::new();
     push_html(&mut html_buf, parser);
     html! {
-      <article>
+      <article class="markdown prose prose-slate">
         <RawHTML inner_html={html_buf} />
       </article>
     }

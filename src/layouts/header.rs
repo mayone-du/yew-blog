@@ -7,8 +7,6 @@ pub struct Props;
 
 pub struct Header;
 
-// enum Msg {}
-
 impl Component for Header {
   type Message = ();
   type Properties = Props;
@@ -19,12 +17,12 @@ impl Component for Header {
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
-      <header class="flex justify-between px-40 border-b">
+      <header class="flex items-center justify-between px-40 border-b">
         <div class="flex items-center">
           <h1 class="text-2xl font-bold">{"Yuki Ishikawa"}</h1>
         </div>
         <nav>
-          <ul class="flex">
+          <ul class="flex items-center">
             <li>
               <Link<AppRoutes> classes="ml-2 block text-blue-500 underline" to={AppRoutes::Home}>{"Home"}</Link<AppRoutes>>
             </li>

@@ -1,0 +1,12 @@
+/* TODO: does not working */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+.markdown {
+  @apply text-red-300;
+}
+.markdown h1 {
+  @apply text-blue-600;
+}
