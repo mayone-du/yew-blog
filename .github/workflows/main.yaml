@@ -1,8 +1,22 @@
 name: Deploy to GitHub Pages
-on: [push]
+on:
+  push:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: ls -al
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - run: npm install
+      - run: npm run build:tailwindcss
+      - uses: jetli/trunk-action@v0.1.0
+        with:
+          version: "latest"
+      - name: "trunk build"
+        run: trunk build
+      - name: "ls"
+        run: ls
