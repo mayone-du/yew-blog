@@ -3,6 +3,7 @@ use yew_router::prelude::*;
 
 mod client;
 mod components;
+mod constants;
 mod layouts;
 mod pages;
 mod routes;

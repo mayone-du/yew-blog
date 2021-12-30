@@ -32,7 +32,8 @@ impl From<JsValue> for FetchError {
   }
 }
 
-pub async fn fetch_row_text<E: From<JsValue>>(url: &str) -> Result<String, E> {
+pub async fn fetch_row_text(url: &str) -> Result<String, FetchError> {
+  // pub async fn fetch_row_text<E: From<JsValue>>(url: &str) -> Result<String, E> {
   let mut opts = RequestInit::new();
   opts.method("GET");
   opts.mode(RequestMode::Cors);
