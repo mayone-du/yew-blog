@@ -1,6 +1,7 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
 
+mod client;
 mod components;
 mod layouts;
 mod pages;
