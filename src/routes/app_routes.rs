@@ -2,9 +2,9 @@ use yew_router::prelude::*;
 
 #[derive(Clone, Routable, PartialEq)]
 pub enum AppRoutes {
-  #[at("/")]
+  #[at("/yew-blog")]
   Home,
-  #[at("/profile")]
+  #[at("/yew-blog/profile")]
   Profile,
   #[not_found]
   #[at("/404")]

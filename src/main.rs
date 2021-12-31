@@ -52,7 +52,7 @@ fn switch(routes: &AppRoutes) -> Html {
   match routes {
     AppRoutes::Home => html! { <pages::index::IndexPage /> },
     AppRoutes::Profile => html! { <pages::profile::ProfilePage /> },
-    AppRoutes::NotFound => html! { <h1>{ "404" }</h1> },
+    AppRoutes::NotFound => html! { <h1>{ "404 Not Found :( By Yew" }</h1> },
   }
 }
 
