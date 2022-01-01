@@ -31,6 +31,7 @@ jobs:
       - run: rustup target add wasm32-unknown-unknown
       - run: trunk build
 
+      - run: chmod 777 ./bin/path_fix.sh
       - run: ./bin/path_fix.sh
 
       - name: Deploy
