@@ -10,29 +10,18 @@ mod routes;
 
 use routes::app_routes::AppRoutes;
 
-enum Msg {
-  AddOne,
-}
-
-struct Model {
-  value: i64,
-}
+struct Model;
 
 impl Component for Model {
-  type Message = Msg;
+  type Message = ();
   type Properties = ();
 
   fn create(_ctx: &Context<Self>) -> Self {
-    Self { value: 0 }
+    Self
   }
 
-  fn update(&mut self, _ctx: &Context<Self>, msg: Self::Message) -> bool {
-    match msg {
-      Msg::AddOne => {
-        self.value += 1;
-        true
-      }
-    }
+  fn update(&mut self, _ctx: &Context<Self>, _msg: Self::Message) -> bool {
+    false
   }
 
   fn view(&self, _ctx: &Context<Self>) -> Html {

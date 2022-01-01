@@ -15,12 +15,11 @@ https://docs.github.com/ja/graphql/overview/public-schema
 
 ## TODO
 
-- read .md file
-- md to html
-- deploy
+- GitHub Pages で初回にルートページ以外にアクセスすると 404 になるのを修正（ファイルシステムが適用されているため仕方ない。404.html などを作成するか、ルーティングまわりをみなおす。）
 
 ## DONE!
 
-- routing
-- layout
-- tailwindcss
+- ルーティング
+- レイアウトの共通化
+- Tailwind CSS の導入
+- GitHub Actions で GitHub Pages へ自動デプロイ
