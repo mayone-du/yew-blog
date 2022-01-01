@@ -3,6 +3,15 @@
     <link rel="stylesheet" href="./tailwind-f218c8bd1a5f0783.css">
     <title>まよねーづのブログ</title>
     <meta name="description" content="まよねーづのブログ">
+     <script>
+    (() => {
+      const query = window.location.search;
+      if (query.startsWith('?p=')) {
+        const route = decodeURIComponent(query.substr(3));
+        window.history.replaceState(null, null, route);
+      }
+    })();
+  </script>
   
 <link rel="preload" href="./index-fdd1346a1ef755d2_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
 <link rel="modulepreload" href="./index-fdd1346a1ef755d2.js"></head>
