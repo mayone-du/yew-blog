@@ -3,17 +3,6 @@
     <link rel="stylesheet" href="./tailwind-f218c8bd1a5f0783.css">
     <title>まよねーづのブログ</title>
     <meta name="description" content="まよねーづのブログ">
-      <script>
-    const SEGMENT_COUNT = 1;
-    const loc = window.location
-    const origin = loc.origin;  //=> https://yourname.github.io
-    const path = loc.href.substr(origin.length + 1);  //=> repo-name/book/123
-    const segments = path.split('/');  //=> [repo-name, book, 123]
-    const repo = segments.slice(0, SEGMENT_COUNT).join('/');  //=> repo-name
-    const param = segments.slice(SEGMENT_COUNT).join('/');  //=> book/123
-    const url = origin + '/' + repo + '?p=' + encodeURIComponent(param);
-    loc.replace(url);
-  </script>
   
 <link rel="preload" href="./index-fdd1346a1ef755d2_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
 <link rel="modulepreload" href="./index-fdd1346a1ef755d2.js"></head>
