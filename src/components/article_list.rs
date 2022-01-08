@@ -1,4 +1,5 @@
-use crate::client::fetch_raw_text::{fetch_row_text, FetchState};
+use crate::client::fetch_raw_text::fetch_row_text;
+use crate::client::state::FetchState;
 use crate::constants::vars::ARTICLE_LIST_META_URL;
 use crate::meta::data_list::MetaDataList;
 use crate::routes::app_routes::AppRoutes;
@@ -8,7 +9,6 @@ use yew_router::components::Link;
 #[derive(PartialEq, Properties)]
 pub struct Props;
 
-// component & stat
 pub struct ArticleList {
   markdown: FetchState<String>,
 }
@@ -59,7 +59,6 @@ impl Component for ArticleList {
       FetchState::Fetching => loading,
       FetchState::Success(data) => {
         let json_data: MetaDataList = serde_json::from_str(&data).unwrap();
-        web_sys::console::log_1(&data.into());
         html! {
           <ul>
             {
