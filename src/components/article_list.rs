@@ -1,6 +1,6 @@
 use crate::client::fetch_raw_text::{fetch_row_text, FetchState};
-use crate::components::row_html::RawHTML;
 use crate::constants::vars::ARTICLE_LIST_META_URL;
+use crate::meta::data_list::MetaDataList;
 use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
@@ -55,7 +55,21 @@ impl Component for ArticleList {
         </button>
       },
       FetchState::Fetching => html! { "Fetching" },
-      FetchState::Success(data) => html! { <RawHTML inner_html={data.clone()} /> },
+      FetchState::Success(data) => {
+        let json_data: MetaDataList = serde_json::from_str(&data).unwrap();
+        web_sys::console::log_1(&data.into());
+        json_data
+          .map(|meta| {
+            html! {
+              <div>
+                <h1 class="font-bold text-3xl">{meta.title}</h1>
+                <p>{meta.description}</p>
+                <p>{meta.created_at}</p>
+              </div>
+            }
+          })
+          .collect::<Html>()
+      }
       FetchState::Failed(err) => html! { err },
     }
   }

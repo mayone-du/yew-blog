@@ -2,12 +2,16 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct MetaData {
-  title: String,
-  description: String,
-  created_at: String,
+  pub title: String,
+  pub description: String,
+  pub created_at: String,
 }
 
 #[derive(Serialize, Deserialize)]
-pub struct DataList {
-  data: Vec<MetaData>,
+pub struct MetaDataList(Vec<MetaData>);
+impl Iterator for MetaDataList {
+  type Item = MetaData;
+  fn next(&mut self) -> Option<Self::Item> {
+    self.0.pop()
+  }
 }

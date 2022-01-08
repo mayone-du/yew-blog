@@ -5,6 +5,7 @@ mod client;
 mod components;
 mod constants;
 mod layouts;
+mod meta;
 mod pages;
 mod routes;
 

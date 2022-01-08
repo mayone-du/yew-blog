@@ -7,6 +7,7 @@ use wasm_bindgen::JsCast;
 use wasm_bindgen_futures::JsFuture;
 use web_sys::{Request, RequestInit, RequestMode, Response};
 
+// データ取得のstate
 pub enum FetchState<T> {
   NotFetching,
   Fetching,
