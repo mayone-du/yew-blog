@@ -16,6 +16,7 @@ https://docs.github.com/ja/graphql/overview/public-schema
 ## TODO
 
 - GitHub Pages で初回にルートページ以外にアクセスすると 404 になるのを修正（ファイルシステムが適用されているため仕方ない。404.html などを作成するか、ルーティングまわりをみなおす。）
+- URL ダサいから GitHub Pages やめてサーバー借りるのあり
 
 ## DONE!
 

@@ -1,6 +1,6 @@
 use crate::client::fetch_raw_text::{fetch_row_text, FetchState};
 use crate::components::row_html::RawHTML;
-use crate::constants::vars::RAW_MARKDOWN_URL;
+use crate::constants::vars::ARTICLE_LIST_META_URL;
 use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
@@ -34,7 +34,7 @@ impl Component for ArticleList {
       }
       Msg::GetMarkdown => {
         ctx.link().send_future(async {
-          match fetch_row_text(RAW_MARKDOWN_URL).await {
+          match fetch_row_text(ARTICLE_LIST_META_URL).await {
             Ok(md) => Msg::SetMarkdownFetchState(FetchState::Success(md)),
             Err(err) => Msg::SetMarkdownFetchState(FetchState::Failed(err)),
           }
