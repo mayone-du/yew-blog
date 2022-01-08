@@ -7,6 +7,8 @@ pub enum AppRoutes {
   Home,
   #[at("/yew-blog/profile")]
   Profile,
+  #[at("/yew-blog/article/:id")]
+  Article { id: String },
   #[not_found]
   #[at("/404")]
   NotFound,

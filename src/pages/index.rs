@@ -8,8 +8,6 @@ pub struct Props;
 
 pub struct IndexPage;
 
-// async fn fetch
-
 impl Component for IndexPage {
   type Message = ();
   type Properties = Props;

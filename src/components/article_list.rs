@@ -1,7 +1,9 @@
 use crate::client::fetch_raw_text::{fetch_row_text, FetchState};
 use crate::constants::vars::ARTICLE_LIST_META_URL;
 use crate::meta::data_list::MetaDataList;
+use crate::routes::app_routes::AppRoutes;
 use yew::{html, Component, Context, Html, Properties};
+use yew_router::components::Link;
 
 #[derive(PartialEq, Properties)]
 pub struct Props;
@@ -20,7 +22,8 @@ impl Component for ArticleList {
   type Message = Msg;
   type Properties = Props;
 
-  fn create(_ctx: &Context<Self>) -> Self {
+  fn create(ctx: &Context<Self>) -> Self {
+    ctx.link().send_message(Msg::GetMarkdown);
     Self {
       markdown: FetchState::NotFetching,
     }
@@ -47,28 +50,35 @@ impl Component for ArticleList {
     }
   }
 
-  fn view(&self, ctx: &Context<Self>) -> Html {
+  fn view(&self, _ctx: &Context<Self>) -> Html {
+    let loading = html! {
+      <div class="animate-pulse bg-gray-300 w-full h-8"></div>
+    };
     match &self.markdown {
-      FetchState::NotFetching => html! {
-        <button onclick={ctx.link().callback(|_| Msg::GetMarkdown)}>
-          { "Get Markdown" }
-        </button>
-      },
-      FetchState::Fetching => html! { "Fetching" },
+      FetchState::NotFetching => loading,
+      FetchState::Fetching => loading,
       FetchState::Success(data) => {
         let json_data: MetaDataList = serde_json::from_str(&data).unwrap();
         web_sys::console::log_1(&data.into());
-        json_data
-          .map(|meta| {
-            html! {
-              <div>
-                <h1 class="font-bold text-3xl">{meta.title}</h1>
-                <p>{meta.description}</p>
-                <p>{meta.created_at}</p>
-              </div>
+        html! {
+          <ul>
+            {
+              json_data
+              .map(|meta| {
+                html! {
+                  <li>
+                    <Link<AppRoutes> to={AppRoutes::Article { id: meta.created_at.clone() }}>
+                      { &meta.created_at }
+                    </Link<AppRoutes>>
+                    <h1 class="font-bold text-3xl">{meta.title}</h1>
+                    <p>{meta.description}</p>
+                  </li>
+                }
+              })
+              .collect::<Html>()
             }
-          })
-          .collect::<Html>()
+          </ul>
+        }
       }
       FetchState::Failed(err) => html! { err },
     }

@@ -1,3 +1,4 @@
+use crate::components::article_list::ArticleList;
 use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
@@ -16,7 +17,7 @@ impl Component for Sidebar {
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
       <aside class="block col-span-1 border">
-        {"aside"}
+        <ArticleList />
       </aside>
     }
   }
