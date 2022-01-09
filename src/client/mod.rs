@@ -1,2 +1,2 @@
-pub mod fetch_raw_text;
+pub mod fetch;
 pub mod state;

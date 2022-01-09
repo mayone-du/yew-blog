@@ -1,5 +1,7 @@
-use crate::client::fetch_raw_text::fetch_row_text;
-use crate::client::state::FetchState;
+use crate::client::{
+  fetch::fetch_row_text,
+  state::{FetchMessage, FetchState},
+};
 use crate::constants::vars::ARTICLE_LIST_META_URL;
 use crate::meta::data_list::MetaDataList;
 use crate::routes::app_routes::AppRoutes;
@@ -10,41 +12,36 @@ use yew_router::components::Link;
 pub struct Props;
 
 pub struct ArticleList {
-  markdown: FetchState<String>,
-}
-
-pub enum Msg {
-  SetMarkdownFetchState(FetchState<String>),
-  GetMarkdown,
+  response: FetchState<String>,
 }
 
 impl Component for ArticleList {
-  type Message = Msg;
+  type Message = FetchMessage;
   type Properties = Props;
 
   fn create(ctx: &Context<Self>) -> Self {
-    ctx.link().send_message(Msg::GetMarkdown);
+    ctx.link().send_message(FetchMessage::FetchStart);
     Self {
-      markdown: FetchState::NotFetching,
+      response: FetchState::NotFetching,
     }
   }
 
   fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
     match msg {
-      Msg::SetMarkdownFetchState(fetch_state) => {
-        self.markdown = fetch_state;
+      FetchMessage::SetFetchState(fetch_state) => {
+        self.response = fetch_state;
         true
       }
-      Msg::GetMarkdown => {
+      FetchMessage::FetchStart => {
         ctx.link().send_future(async {
           match fetch_row_text(ARTICLE_LIST_META_URL).await {
-            Ok(md) => Msg::SetMarkdownFetchState(FetchState::Success(md)),
-            Err(err) => Msg::SetMarkdownFetchState(FetchState::Failed(err)),
+            Ok(md) => FetchMessage::SetFetchState(FetchState::Success(md)),
+            Err(err) => FetchMessage::SetFetchState(FetchState::Failed(err)),
           }
         });
         ctx
           .link()
-          .send_message(Msg::SetMarkdownFetchState(FetchState::Fetching));
+          .send_message(FetchMessage::SetFetchState(FetchState::Fetching));
         false
       }
     }
@@ -54,7 +51,7 @@ impl Component for ArticleList {
     let loading = html! {
       <div class="animate-pulse bg-gray-300 w-full h-8"></div>
     };
-    match &self.markdown {
+    match &self.response {
       FetchState::NotFetching => loading,
       FetchState::Fetching => loading,
       FetchState::Success(data) => {

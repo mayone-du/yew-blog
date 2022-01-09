@@ -3,9 +3,6 @@ use std::{
   fmt::{self, Debug, Display, Formatter},
 };
 use wasm_bindgen::prelude::*;
-use wasm_bindgen::JsCast;
-use wasm_bindgen_futures::JsFuture;
-use web_sys::{Request, RequestInit, RequestMode, Response};
 
 // データ取得のstate
 pub enum FetchState<T> {
@@ -33,7 +30,7 @@ impl From<JsValue> for FetchError {
   }
 }
 
-pub enum Msg {
-  SetMarkdownFetchState(FetchState<String>),
+pub enum FetchMessage {
+  SetFetchState(FetchState<String>),
   FetchStart,
 }
