@@ -23,7 +23,7 @@ impl Component for MainLayout {
     html! {
       <div>
         <Header />
-        <div class="grid grid-cols-3 gap-4 mx-60">
+        <div class="grid grid-cols-3 gap-4 mx-80">
           <main class="col-span-2 border border-blue-300">
             { for ctx.props().children.iter() }
           </main>

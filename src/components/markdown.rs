@@ -1,6 +1,7 @@
 use crate::client::{fetch::fetch_row_text, state::FetchMessage, state::FetchState};
 use crate::components::row_html::RawHTML;
 use crate::constants::vars::ARTICLE_BASE_URL;
+use pulldown_cmark::{html::push_html, Parser};
 use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
@@ -59,10 +60,13 @@ impl Component for Markdown {
       FetchState::NotFetching => loading,
       FetchState::Fetching => loading,
       FetchState::Success(data) => {
+        // TODO: meta情報を削除
+        let parser = Parser::new(&data);
+        let mut html_buf = String::new();
+        push_html(&mut html_buf, parser);
         html! {
-          <article class="markdown prose prose-slate">
-            // TODO: meta情報を削除
-            <RawHTML inner_html={data.to_string().clone()} />
+          <article class="markdown prose prose-slate mx-auto">
+            <RawHTML inner_html={html_buf} />
           </article>
         }
       }

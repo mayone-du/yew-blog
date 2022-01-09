@@ -15,7 +15,7 @@ impl Component for Footer {
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
-      <footer class="flex items-center justify-center px-40 py-4 bg-gray-800 text-white">
+      <footer class="flex items-center justify-center px-80 py-4 bg-gray-800 text-white">
         <p>{"copyright Yuki Ishikawa"}</p>
       </footer>
     }

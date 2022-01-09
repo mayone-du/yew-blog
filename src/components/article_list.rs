@@ -63,11 +63,12 @@ impl Component for ArticleList {
               .map(|meta| {
                 html! {
                   <li>
-                    <Link<AppRoutes> to={AppRoutes::Article { id: meta.created_at.clone() }}>
-                      { &meta.created_at }
+                    <Link<AppRoutes> classes="block text-blue-500 hover:bg-gray-100" to={AppRoutes::Article { id: meta.created_at.clone() }}>
+                      <span class="block font-bold" title={meta.title.clone()}>{meta.title}</span>
+                      <span class="block">{meta.emoji}</span>
+                      <span class="block">{meta.description}</span>
+                      <span class="text-sm">{&meta.created_at}</span>
                     </Link<AppRoutes>>
-                    <h1 class="font-bold text-3xl">{meta.title}</h1>
-                    <p>{meta.description}</p>
                   </li>
                 }
               })
