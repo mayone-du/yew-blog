@@ -61,15 +61,19 @@ impl Component for ArticleList {
             {
               json_data
               .map(|meta| {
-                html! {
-                  <li>
-                    <Link<AppRoutes> classes="block text-blue-500 hover:bg-gray-100" to={AppRoutes::Article { id: meta.created_at.clone() }}>
-                      <span class="block font-bold" title={meta.title.clone()}>{meta.title}</span>
-                      <span class="block">{meta.emoji}</span>
-                      <span class="block">{meta.description}</span>
-                      <span class="text-sm">{&meta.created_at}</span>
-                    </Link<AppRoutes>>
-                  </li>
+                if meta.is_published {
+                  html! {
+                    <li>
+                      <Link<AppRoutes> classes="block text-blue-500 hover:bg-gray-100 border" to={AppRoutes::Article { id: meta.created_at.clone() }}>
+                        <span class="block font-bold" title={meta.title.clone()}>{meta.title}</span>
+                        <span class="block">{meta.emoji}</span>
+                        <span class="block">{meta.description}</span>
+                        <span class="text-sm">{&meta.created_at}</span>
+                      </Link<AppRoutes>>
+                    </li>
+                  }
+                } else {
+                  html! {}
                 }
               })
               .collect::<Html>()
