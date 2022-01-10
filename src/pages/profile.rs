@@ -1,3 +1,5 @@
+use crate::components::markdown::Markdown;
+use crate::constants::vars::PROFILE_URL;
 use crate::layouts::main_layout::MainLayout;
 use yew::{html, Component, Context, Html, Properties};
 
@@ -18,6 +20,7 @@ impl Component for ProfilePage {
     html! {
       <MainLayout>
         <h1>{"ProfilePage"}</h1>
+        <Markdown request_url={PROFILE_URL} />
       </MainLayout>
     }
   }

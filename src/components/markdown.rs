@@ -6,7 +6,7 @@ use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
 pub struct Props {
-  pub id: String,
+  pub request_url: String,
 }
 
 pub struct Markdown {
@@ -31,15 +31,9 @@ impl Component for Markdown {
         true
       }
       FetchMessage::FetchStart => {
-        ctx.link().send_future(async {
-          // let api_url: &str = format!("{}{}.md", ARTICLE_BASE_URL, ctx.props().id);
-          // let api_url = format!(
-          //   "https://raw.githubusercontent.com/mayone-du/blog-contents/main/articles/{}.md",
-          //   ctx.props().id
-          // )
-          // .as_str();
-          let a: &str = "https://raw.githubusercontent.com/mayone-du/blog-contents/main/articles/2022/2022-01-08.md";
-          match fetch_row_text(a).await {
+        let request_url = ctx.props().request_url.clone();
+        ctx.link().send_future(async move {
+          match fetch_row_text(&request_url).await {
             Ok(md) => FetchMessage::SetFetchState(FetchState::Success(md)),
             Err(err) => FetchMessage::SetFetchState(FetchState::Failed(err)),
           }
