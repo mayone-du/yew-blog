@@ -4,7 +4,9 @@ pub const MAIN_BRANCH: &str = "main";
 pub const RAW_MARKDOWN_URL: &str =
   "https://raw.githubusercontent.com/mayone-du/blog-contents/main/README.md";
 pub const ARTICLE_LIST_META_URL: &str =
-  "https://raw.githubusercontent.com/mayone-du/blog-contents/main/meta/list_data.json";
+  "https://raw.githubusercontent.com/mayone-du/blog-contents/main/meta/article_list.json";
+pub const OTHER_LIST_META_URL: &str =
+  "https://raw.githubusercontent.com/mayone-du/blog-contents/main/meta/other_list.json";
 pub const ARTICLE_BASE_URL: &str =
   "https://raw.githubusercontent.com/mayone-du/blog-contents/main/articles/";
 pub const PROFILE_URL: &str =
