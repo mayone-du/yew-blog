@@ -1,6 +1,5 @@
 use crate::client::{fetch::fetch_row_text, state::FetchMessage, state::FetchState};
 use crate::components::row_html::RawHTML;
-use crate::constants::vars::ARTICLE_BASE_URL;
 use pulldown_cmark::{html::push_html, Parser};
 use yew::{html, Component, Context, Html, Properties};
 

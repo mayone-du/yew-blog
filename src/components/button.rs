@@ -14,7 +14,7 @@ impl Component for Button {
   type Properties = Props;
 
   fn create(_ctx: &Context<Self>) -> Self {
-    Button
+    Self
   }
 
   fn view(&self, _ctx: &Context<Self>) -> Html {

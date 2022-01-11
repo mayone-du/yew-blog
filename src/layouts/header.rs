@@ -19,7 +19,7 @@ impl Component for Header {
     html! {
       <header class="flex items-center justify-between px-80 border-b">
         <div class="flex items-center">
-          <h1 class="text-2xl font-bold">{"Yuki Ishikawa"}</h1>
+          <h1 class="text-2xl font-bold">{"mayoblog"}</h1>
         </div>
         <nav>
           <ul class="flex items-center">

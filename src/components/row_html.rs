@@ -18,10 +18,8 @@ impl Component for RawHTML {
   type Properties = RawHTMLProps;
 
   fn create(ctx: &Context<Self>) -> Self {
-    RawHTML {
-      props: RawHTMLProps {
-        inner_html: ctx.props().inner_html.clone(),
-      },
+    Self {
+      props: ctx.props().clone(),
     }
   }
 
