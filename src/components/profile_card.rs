@@ -1,25 +1,24 @@
-use crate::components::{article_list::ArticleList, profile_card::ProfileCard};
 use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
 pub struct Props;
 
-pub struct Sidebar;
+pub struct ProfileCard;
 
-impl Component for Sidebar {
+impl Component for ProfileCard {
   type Message = ();
   type Properties = Props;
 
   fn create(_ctx: &Context<Self>) -> Self {
-    Sidebar
+    Self
   }
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
-      <aside class="block col-span-1 border">
-        <ArticleList />
-        <ProfileCard />
-      </aside>
+      <div class="shadow-sm rounded p-4">
+        <h4>{"Profile"}</h4>
+        <p>{"まよねーづ"}</p>
+      </div>
     }
   }
 }
