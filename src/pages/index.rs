@@ -11,7 +11,7 @@ impl Component for IndexPage {
   type Properties = Props;
 
   fn create(_ctx: &Context<Self>) -> Self {
-    IndexPage
+    Self
   }
 
   fn view(&self, _ctx: &Context<Self>) -> Html {

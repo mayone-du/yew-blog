@@ -13,7 +13,7 @@ impl Component for ProfilePage {
   type Properties = Props;
 
   fn create(_ctx: &Context<Self>) -> Self {
-    ProfilePage
+    Self
   }
 
   fn view(&self, _ctx: &Context<Self>) -> Html {

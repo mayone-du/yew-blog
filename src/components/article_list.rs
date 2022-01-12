@@ -3,7 +3,7 @@ use crate::client::{
   state::{FetchMessage, FetchState},
 };
 use crate::constants::vars::ARTICLE_LIST_META_URL;
-use crate::meta::data_list::MetaDataList;
+use crate::meta::data_list::ArticleMetaDataList;
 use crate::routes::app_routes::AppRoutes;
 use yew::{html, Component, Context, Html, Properties};
 use yew_router::components::Link;
@@ -55,7 +55,7 @@ impl Component for ArticleList {
       FetchState::NotFetching => loading,
       FetchState::Fetching => loading,
       FetchState::Success(data) => {
-        let json_data: MetaDataList = serde_json::from_str(&data).unwrap();
+        let json_data: ArticleMetaDataList = serde_json::from_str(&data).unwrap();
         html! {
           <ul>
             {

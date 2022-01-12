@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
-pub struct MetaData {
+pub struct ArticleMetaData {
   pub title: String,
   pub description: String,
   pub emoji: String,
@@ -10,10 +10,13 @@ pub struct MetaData {
 }
 
 #[derive(Serialize, Deserialize)]
-pub struct MetaDataList(Vec<MetaData>);
-impl Iterator for MetaDataList {
-  type Item = MetaData;
+pub struct ArticleMetaDataList(Vec<ArticleMetaData>);
+impl Iterator for ArticleMetaDataList {
+  type Item = ArticleMetaData;
   fn next(&mut self) -> Option<Self::Item> {
     self.0.pop()
   }
 }
+
+// TODO: Others
+pub struct OtherMetaData {}
