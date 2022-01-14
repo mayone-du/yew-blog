@@ -18,5 +18,19 @@ impl Iterator for ArticleMetaDataList {
   }
 }
 
-// TODO: Others
-pub struct OtherMetaData {}
+#[derive(Serialize, Deserialize)]
+pub struct OtherMetaData {
+  pub title: String,
+  pub description: String,
+  pub emoji: String,
+  pub is_published: bool,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct OtherMetaDataList(Vec<OtherMetaData>);
+impl Iterator for OtherMetaDataList {
+  type Item = OtherMetaData;
+  fn next(&mut self) -> Option<Self::Item> {
+    self.0.pop()
+  }
+}

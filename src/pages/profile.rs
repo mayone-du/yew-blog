@@ -19,7 +19,6 @@ impl Component for ProfilePage {
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
       <MainLayout>
-        <h1>{"ProfilePage"}</h1>
         <Markdown request_url={PROFILE_URL} />
       </MainLayout>
     }
