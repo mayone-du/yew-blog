@@ -83,7 +83,7 @@ impl Component for ArticlePage {
         html! {
           <MainLayout>
             <MetaInfo title={title} description={description} emoji={emoji} created_at={ctx.props().id.clone()} />
-            <div class="grid grid-cols-3 gap-6">
+            <div class="grid grid-cols-3 lg:gap-6 gap-4">
               <div class="lg:col-span-2 col-span-3 border border-gray-200 rounded p-4 bg-white">
                 <Markdown markdwon_data={meta_removed_data.to_string()} />
               </div>

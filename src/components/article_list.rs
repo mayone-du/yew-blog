@@ -57,7 +57,7 @@ impl Component for ArticleList {
       FetchState::Success(data) => {
         let json_data: ArticleMetaDataList = serde_json::from_str(&data).unwrap();
         html! {
-          <ul class="grid gap-6 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+          <ul class="grid lg:gap-6 gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
             {
               json_data
               .map(|meta| {

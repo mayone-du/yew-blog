@@ -17,17 +17,17 @@ impl Component for Header {
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
-      <header class="flex items-center justify-between py-4 lg:px-80 px-10 border-b">
+      <header class="flex items-center justify-between py-4 lg:px-80 px-8 border-b">
         <div class="flex items-center">
-          <h1 class="text-2xl font-bold">{"mayoblog"}</h1>
+          <Link<AppRoutes> classes="text-2xl font-bold" to={AppRoutes::Home}>{"mayoblog"}</Link<AppRoutes>>
         </div>
         <nav>
           <ul class="grid grid-cols-2 gap-4">
             <li class="col-span-1">
-              <Link<AppRoutes> classes="block text-blue-500 underline" to={AppRoutes::Home}>{"Home"}</Link<AppRoutes>>
+              <Link<AppRoutes> classes="block text-blue-500 underline transition-all hover:no-underline" to={AppRoutes::Home}>{"Home"}</Link<AppRoutes>>
             </li>
             <li class="col-span-1">
-              <Link<AppRoutes> classes="block text-blue-500 underline" to={AppRoutes::Profile}>{"Profile"}</Link<AppRoutes>>
+              <Link<AppRoutes> classes="block text-blue-500 underline transition-all hover:no-underline" to={AppRoutes::Profile}>{"Profile"}</Link<AppRoutes>>
             </li>
           </ul>
         </nav>
