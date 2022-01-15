@@ -1,4 +1,6 @@
-use crate::layouts::main_layout::MainLayout;
+use crate::components::article_list::ArticleList;
+use crate::layouts::footer::Footer;
+use crate::layouts::header::Header;
 use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
@@ -16,9 +18,14 @@ impl Component for IndexPage {
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
-      <MainLayout>
-        <h1>{"Index Page"}</h1>
-      </MainLayout>
+      <div>
+        <Header />
+        <main class="px-80 py-6">
+          <h1 class="text-4xl font-bold py-6 text-center">{"ひまたんしかかたん🥺"}</h1>
+          <ArticleList />
+        </main>
+        <Footer />
+      </div>
     }
   }
 }

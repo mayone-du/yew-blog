@@ -1,4 +1,4 @@
-use crate::components::{article_list::ArticleList, profile_card::ProfileCard};
+use crate::components::profile_card::ProfileCard;
 use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
@@ -18,7 +18,6 @@ impl Component for Sidebar {
     html! {
       <aside class="block col-span-1">
         <ProfileCard />
-        <ArticleList />
       </aside>
     }
   }

@@ -17,7 +17,7 @@ impl Component for Header {
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
-      <header class="flex items-center justify-between px-80 border-b">
+      <header class="flex items-center justify-between py-4 px-80 border-b">
         <div class="flex items-center">
           <h1 class="text-2xl font-bold">{"mayoblog"}</h1>
         </div>
