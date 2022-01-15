@@ -1,8 +1,8 @@
 use crate::client::{fetch::fetch_row_text, state::FetchMessage, state::FetchState};
 use crate::components::markdown::Markdown;
+use crate::components::meta_info::MetaInfo;
 use crate::layouts::main_layout::MainLayout;
 use crate::layouts::sidebar::Sidebar;
-use crate::meta::data_list::ArticleMetaData;
 use regex;
 use yew::{html, Component, Context, Html, Properties};
 
@@ -34,7 +34,7 @@ impl Component for ArticlePage {
       }
       FetchMessage::FetchStart => {
         // TODO: いい感じに文字列連結したかった Rustの最新ver(1.58とか？)なら文字列連結できるようになってるかも。
-        let id = ctx.props().id.clone();
+        let id = &ctx.props().id;
         let year = id.split("-").next().unwrap(); // or let year = id.split("-").next().unwrap();
         let request_url = format!(
           "https://raw.githubusercontent.com/mayone-du/blog-contents/main/articles/{}/{}.md",
@@ -65,32 +65,22 @@ impl Component for ArticlePage {
       FetchState::Success(data) => {
         // メタデータを抽出
         let meta_section_regexp = regex::Regex::new(r"---([^---]*)---").unwrap();
-        // TODO: 関数にする
-        let meta_title_regexp = regex::Regex::new(r"title: (.*)").unwrap();
-        let meta_data_str = meta_section_regexp
-          .captures(&data)
-          .unwrap()
-          .get(1)
-          .unwrap()
-          .as_str();
-        // TODO: メタデータのみを抽出
-        let title = meta_title_regexp
-          .captures(&meta_data_str)
-          .unwrap()
-          .get(1)
-          .unwrap()
-          .as_str();
-        let meta_data = ArticleMetaData {
-          title: meta_data_str.replace("title: ", ""),
-          description: meta_data_str.replace("description: ", ""),
-          emoji: meta_data_str.replace("emoji: ", ""),
-          created_at: "created_at: ".to_string(),
-          is_published: true,
-        };
+        // 関数にする
+        let (meta_title_regexp, meta_description_regexp, meta_emoji_regexp) = (
+          create_meta_regexp("title"),
+          create_meta_regexp("description"),
+          create_meta_regexp("emoji"),
+        );
+        let meta_section = capture_meta_val(&meta_section_regexp, &data);
+
+        // メタデータのみを抽出
+        let title = capture_meta_val(&meta_title_regexp, &meta_section);
+        let description = capture_meta_val(&meta_description_regexp, &meta_section);
+        let emoji = capture_meta_val(&meta_emoji_regexp, &meta_section);
         let meta_removed_data = meta_section_regexp.replace(&data, "");
         html! {
           <MainLayout>
-            {title}
+            <MetaInfo title={title} description={description} emoji={emoji} created_at={"hogehoge"} />
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-2 border border-gray-200 rounded p-4 bg-white">
                 <Markdown markdwon_data={meta_removed_data.to_string()} />
@@ -103,4 +93,18 @@ impl Component for ArticlePage {
       FetchState::Failed(err) => html! { err },
     }
   }
+}
+
+fn create_meta_regexp(attr: &str) -> regex::Regex {
+  regex::Regex::new(&format!("{}: (.*)", attr)).unwrap()
+}
+
+fn capture_meta_val(regexp: &regex::Regex, data: &str) -> String {
+  regexp
+    .captures(&data)
+    .unwrap()
+    .get(1)
+    .unwrap()
+    .as_str()
+    .to_string()
 }
