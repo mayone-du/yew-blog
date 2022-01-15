@@ -54,6 +54,7 @@ impl Component for Markdown {
       FetchState::NotFetching => loading,
       FetchState::Fetching => loading,
       FetchState::Success(data) => {
+        // メタデータを削除
         let regexp = regex::Regex::new(r"---([^---]*)---").unwrap();
         let meta_removed_data = regexp.replace(&data, "");
         let parser = Parser::new(&meta_removed_data);

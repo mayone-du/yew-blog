@@ -57,28 +57,31 @@ impl Component for ArticleList {
       FetchState::Success(data) => {
         let json_data: ArticleMetaDataList = serde_json::from_str(&data).unwrap();
         html! {
-          <ul>
-            {
-              json_data
-              .map(|meta| {
-                if meta.is_published {
-                  html! {
-                    <li>
-                      <Link<AppRoutes> classes="block text-blue-500 hover:bg-gray-100 border" to={AppRoutes::Article { id: meta.created_at.clone() }}>
-                        <span class="block font-bold" title={meta.title.clone()}>{meta.title}</span>
-                        <span class="block">{meta.emoji}</span>
-                        <span class="block">{meta.description}</span>
-                        <span class="text-sm">{&meta.created_at}</span>
-                      </Link<AppRoutes>>
-                    </li>
+          <div class="shadow-sm border border-gray-200 rounded p-4">
+            <h4 class="font-bold text-lg">{"記事一覧"}</h4>
+            <ul>
+              {
+                json_data
+                .map(|meta| {
+                  if meta.is_published {
+                    html! {
+                      <li>
+                        <Link<AppRoutes> classes="block text-blue-500 hover:bg-gray-100 border" to={AppRoutes::Article { id: meta.created_at.clone() }}>
+                          <span class="block font-bold" title={meta.title.clone()}>{meta.title}</span>
+                          <span class="block">{meta.emoji}</span>
+                          <span class="block">{meta.description}</span>
+                          <span class="text-sm">{&meta.created_at}</span>
+                        </Link<AppRoutes>>
+                      </li>
+                    }
+                  } else {
+                    html! {}
                   }
-                } else {
-                  html! {}
-                }
-              })
-              .collect::<Html>()
-            }
-          </ul>
+                })
+                .collect::<Html>()
+              }
+            </ul>
+          </div>
         }
       }
       FetchState::Failed(err) => html! { err },

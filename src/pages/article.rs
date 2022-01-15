@@ -18,7 +18,7 @@ impl Component for ArticlePage {
   }
 
   fn view(&self, ctx: &Context<Self>) -> Html {
-    // TODO: いい感じに文字列連結したかった Rustの最新ver(1.5.8とか？)なら文字列連結できるようになってるかも？
+    // TODO: いい感じに文字列連結したかった Rustの最新ver(1.58とか？)なら文字列連結できるようになってるかも。
     let id = ctx.props().id.clone();
     let year = id.split("-").next().unwrap(); // or let year = id.split("-").next().unwrap();
     let request_url = format!(
