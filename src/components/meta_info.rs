@@ -23,15 +23,20 @@ impl Component for MetaInfo {
   fn view(&self, ctx: &Context<Self>) -> Html {
     html! {
       <div>
-        <div class="text-center font-bold text-4xl">
+        <div class="text-center font-bold text-8xl">
           {&ctx.props().emoji}
         </div>
-        <h1 class="font-bold text-3xl text-center pt-4 pb-8">
+        <h1 class="font-bold text-3xl text-center py-4">
           {&ctx.props().title}
         </h1>
-        <p class="text-sm text-gray-600">
+        <p class="pb-4 text-sm text-center text-gray-600">
           {&ctx.props().description}
         </p>
+        <div class="flex items-center justify-center pb-8">
+          <small>
+            {&ctx.props().created_at}
+          </small>
+        </div>
       </div>
     }
   }

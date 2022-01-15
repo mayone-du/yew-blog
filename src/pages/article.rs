@@ -55,7 +55,7 @@ impl Component for ArticlePage {
     }
   }
 
-  fn view(&self, _ctx: &Context<Self>) -> Html {
+  fn view(&self, ctx: &Context<Self>) -> Html {
     let loading = html! {
       <div class="animate-pulse bg-gray-300 w-full h-8"></div>
     };
@@ -80,9 +80,9 @@ impl Component for ArticlePage {
         let meta_removed_data = meta_section_regexp.replace(&data, "");
         html! {
           <MainLayout>
-            <MetaInfo title={title} description={description} emoji={emoji} created_at={"hogehoge"} />
+            <MetaInfo title={title} description={description} emoji={emoji} created_at={ctx.props().id.clone()} />
             <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-2 border border-gray-200 rounded p-4 bg-white">
+              <div class="lg:col-span-2 col-span-3 border border-gray-200 rounded p-4 bg-white">
                 <Markdown markdwon_data={meta_removed_data.to_string()} />
               </div>
               <Sidebar />

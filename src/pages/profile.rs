@@ -69,7 +69,7 @@ impl Component for ProfilePage {
           <MainLayout>
             {meta_data.emoji}
             <div class="grid grid-cols-3 gap-6">
-              <div class="col-span-2 border border-gray-200 rounded p-4 bg-white">
+              <div class="lg:col-span-2 col-span-3 border border-gray-200 rounded p-4 bg-white">
                 <Markdown markdwon_data={meta_removed_data.to_string()} />
               </div>
               <Sidebar />
