@@ -64,9 +64,22 @@ impl Component for ArticlePage {
       FetchState::Fetching => loading,
       FetchState::Success(data) => {
         // メタデータを抽出
-        let regexp = regex::Regex::new(r"---([^---]*)---").unwrap();
-        let meta_data_str = regexp.captures(&data).unwrap().get(1).unwrap().as_str();
+        let meta_section_regexp = regex::Regex::new(r"---([^---]*)---").unwrap();
+        // TODO: 関数にする
+        let meta_title_regexp = regex::Regex::new(r"title: (.*)").unwrap();
+        let meta_data_str = meta_section_regexp
+          .captures(&data)
+          .unwrap()
+          .get(1)
+          .unwrap()
+          .as_str();
         // TODO: メタデータのみを抽出
+        let title = meta_title_regexp
+          .captures(&meta_data_str)
+          .unwrap()
+          .get(1)
+          .unwrap()
+          .as_str();
         let meta_data = ArticleMetaData {
           title: meta_data_str.replace("title: ", ""),
           description: meta_data_str.replace("description: ", ""),
@@ -74,10 +87,10 @@ impl Component for ArticlePage {
           created_at: "created_at: ".to_string(),
           is_published: true,
         };
-        let meta_removed_data = regexp.replace(&data, "");
+        let meta_removed_data = meta_section_regexp.replace(&data, "");
         html! {
           <MainLayout>
-            {meta_data.emoji}
+            {title}
             <div class="grid grid-cols-3 gap-6">
               <div class="col-span-2 border border-gray-200 rounded p-4 bg-white">
                 <Markdown markdwon_data={meta_removed_data.to_string()} />
