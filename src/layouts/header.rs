@@ -22,12 +22,12 @@ impl Component for Header {
           <h1 class="text-2xl font-bold">{"mayoblog"}</h1>
         </div>
         <nav>
-          <ul class="flex items-center">
-            <li>
-              <Link<AppRoutes> classes="ml-2 block text-blue-500 underline" to={AppRoutes::Home}>{"Home"}</Link<AppRoutes>>
+          <ul class="grid grid-cols-2 gap-4">
+            <li class="col-span-1">
+              <Link<AppRoutes> classes="block text-blue-500 underline" to={AppRoutes::Home}>{"Home"}</Link<AppRoutes>>
             </li>
-            <li>
-              <Link<AppRoutes> classes="ml-2 block text-blue-500 underline" to={AppRoutes::Profile}>{"Profile"}</Link<AppRoutes>>
+            <li class="col-span-1">
+              <Link<AppRoutes> classes="block text-blue-500 underline" to={AppRoutes::Profile}>{"Profile"}</Link<AppRoutes>>
             </li>
           </ul>
         </nav>

@@ -1,6 +1,5 @@
 use crate::layouts::footer::Footer;
 use crate::layouts::header::Header;
-use crate::layouts::sidebar::Sidebar;
 use yew::{html, Children, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
@@ -23,12 +22,9 @@ impl Component for MainLayout {
     html! {
       <div>
         <Header />
-        <div class="grid grid-cols-3 gap-6 mx-80 py-6">
-          <main class="col-span-2 border border-gray-200 rounded p-4">
-            { for ctx.props().children.iter() }
-          </main>
-          <Sidebar />
-        </div>
+        <main class="px-80 py-6 bg-blue-50">
+          { for ctx.props().children.iter() }
+        </main>
         <Footer />
       </div>
     }

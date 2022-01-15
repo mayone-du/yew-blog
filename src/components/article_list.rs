@@ -63,13 +63,13 @@ impl Component for ArticleList {
               .map(|meta| {
                 if meta.is_published {
                   html! {
-                    <li class="col-span-1 border border-gray-200 rounded-lg shadow-sm transition-all hover:bg-gray-50 hover:-translate-y-1" title={meta.title.clone()}>
+                    <li class="col-span-1 border border-gray-200 rounded-lg shadow-sm overflow-hidden bg-white transition-all hover:bg-gray-50 hover:-translate-y-1" title={meta.title.clone()}>
                       <Link<AppRoutes> classes="block" to={AppRoutes::Article { id: meta.created_at.clone() }}>
-                        <div class="text-7xl py-6 text-center bg-blue-50 border-b border-gray-100">{meta.emoji}</div>
+                        <div class="text-7xl py-6 text-center bg-blue-100 border-b border-gray-100">{meta.emoji}</div>
                         <div class="p-4">
                           <h5 class="text-lg font-bold pb-3">{meta.title}</h5>
                           <p class="text-sm text-gray-500 pb-3">{meta.description}</p>
-                          <small class="block text-xs text-right">{&meta.created_at}</small>
+                          <small class="block text-sm text-right">{&meta.created_at}</small>
                         </div>
                       </Link<AppRoutes>>
                     </li>

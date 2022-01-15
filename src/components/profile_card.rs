@@ -15,7 +15,7 @@ impl Component for ProfileCard {
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
-      <div class="shadow-sm border border-gray-200 rounded p-4 mb-6">
+      <div class="shadow-sm border border-gray-200 rounded p-4 mb-6 bg-white">
         <div class="flex items-center">
           <img class="inline-block object-cover w-14 h-14 rounded-full mr-2" src="https://raw.githubusercontent.com/mayone-du/blog-contents/main/images/profile.jpg" alt="プロフィール" />
           <div>
