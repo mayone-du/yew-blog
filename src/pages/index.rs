@@ -18,7 +18,7 @@ impl Component for IndexPage {
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
       <MainLayout>
-        <h1 class="text-4xl font-bold pt-6 pb-12 text-center">{"ひまたんしかかたん🥺"}</h1>
+        <h1 class="lg:text-4xl text-2xl font-bold pt-6 pb-12 text-center">{"ひまたんしかかたん🥺"}</h1>
         <ArticleList />
       </MainLayout>
     }

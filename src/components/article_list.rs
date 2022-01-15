@@ -57,7 +57,7 @@ impl Component for ArticleList {
       FetchState::Success(data) => {
         let json_data: ArticleMetaDataList = serde_json::from_str(&data).unwrap();
         html! {
-          <ul class="grid gap-6 grid-cols-3">
+          <ul class="grid gap-6 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
             {
               json_data
               .map(|meta| {
@@ -65,7 +65,7 @@ impl Component for ArticleList {
                   html! {
                     <li class="col-span-1 border border-gray-200 rounded-lg shadow-sm overflow-hidden bg-white transition-all hover:bg-gray-50 hover:-translate-y-1" title={meta.title.clone()}>
                       <Link<AppRoutes> classes="block" to={AppRoutes::Article { id: meta.created_at.clone() }}>
-                        <div class="text-7xl py-6 text-center bg-blue-100 border-b border-gray-100">{meta.emoji}</div>
+                        <div class="lg:text-7xl text-5xl py-6 text-center bg-blue-100 border-b border-gray-100">{meta.emoji}</div>
                         <div class="p-4">
                           <h5 class="text-lg font-bold pb-3">{meta.title}</h5>
                           <p class="text-sm text-gray-500 pb-3">{meta.description}</p>

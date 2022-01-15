@@ -8,6 +8,7 @@ mod layouts;
 mod meta;
 mod pages;
 mod routes;
+mod utils;
 
 use routes::app_routes::AppRoutes;
 

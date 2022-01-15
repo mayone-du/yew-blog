@@ -1,10 +1,11 @@
 use crate::client::fetch::fetch_row_text;
 use crate::client::state::{FetchMessage, FetchState};
 use crate::components::markdown::Markdown;
+use crate::components::meta_info::MetaInfo;
 use crate::constants::vars::PROFILE_URL;
 use crate::layouts::main_layout::MainLayout;
 use crate::layouts::sidebar::Sidebar;
-use crate::meta::data_list::OtherMetaData;
+use crate::utils::index::{capture_val_by_regexp, create_meta_regexp};
 use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
@@ -55,19 +56,26 @@ impl Component for ProfilePage {
       FetchState::Fetching => loading,
       FetchState::Success(data) => {
         // メタデータを抽出
-        let regexp = regex::Regex::new(r"---([^---]*)---").unwrap();
-        let meta_data_str = regexp.captures(&data).unwrap().get(1).unwrap().as_str();
-        // TODO: メタデータのみを抽出
-        let meta_data = OtherMetaData {
-          title: meta_data_str.replace("title: ", ""),
-          description: meta_data_str.replace("description: ", ""),
-          emoji: meta_data_str.replace("emoji: ", ""),
-          is_published: true,
-        };
-        let meta_removed_data = regexp.replace(&data, "");
+
+        let meta_section_regexp = regex::Regex::new(r"---([^---]*)---").unwrap();
+
+        let (meta_title_regexp, meta_description_regexp, meta_emoji_regexp) = (
+          create_meta_regexp("title"),
+          create_meta_regexp("description"),
+          create_meta_regexp("emoji"),
+        );
+        let meta_section = capture_val_by_regexp(&meta_section_regexp, &data);
+
+        // メタデータのそれぞれの値を抽出
+        let title = capture_val_by_regexp(&meta_title_regexp, &meta_section);
+        let description = capture_val_by_regexp(&meta_description_regexp, &meta_section);
+        let emoji = capture_val_by_regexp(&meta_emoji_regexp, &meta_section);
+
+        let meta_removed_data = meta_section_regexp.replace(&data, "");
+
         html! {
           <MainLayout>
-            {meta_data.emoji}
+            <MetaInfo title={title} description={description} emoji={emoji} created_at={""} />
             <div class="grid grid-cols-3 gap-6">
               <div class="lg:col-span-2 col-span-3 border border-gray-200 rounded p-4 bg-white">
                 <Markdown markdwon_data={meta_removed_data.to_string()} />
