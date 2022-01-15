@@ -1,6 +1,7 @@
 use crate::client::{fetch::fetch_row_text, state::FetchMessage, state::FetchState};
 use crate::components::row_html::RawHTML;
 use pulldown_cmark::{html::push_html, Parser};
+use regex;
 use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
@@ -53,8 +54,9 @@ impl Component for Markdown {
       FetchState::NotFetching => loading,
       FetchState::Fetching => loading,
       FetchState::Success(data) => {
-        // TODO: meta情報を削除
-        let parser = Parser::new(&data);
+        let regexp = regex::Regex::new(r"---([^---]*)---").unwrap();
+        let meta_removed_data = regexp.replace(&data, "");
+        let parser = Parser::new(&meta_removed_data);
         let mut html_buf = String::new();
         push_html(&mut html_buf, parser);
         html! {

@@ -17,8 +17,8 @@ impl Component for Sidebar {
   fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
       <aside class="block col-span-1 border">
-        <ArticleList />
         <ProfileCard />
+        <ArticleList />
       </aside>
     }
   }
