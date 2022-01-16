@@ -10,8 +10,9 @@ npm run build:talwindcss
 trunk serve
 ```
 
-download the schema.docs.graphql from github.
-https://docs.github.com/ja/graphql/overview/public-schema
+<!-- GraphQLを使う場合↓ -->
+<!-- download the schema.docs.graphql from github.
+https://docs.github.com/ja/graphql/overview/public-schema -->
 
 ## TODO
 
