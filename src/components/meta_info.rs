@@ -1,4 +1,3 @@
-use crate::meta::data_list::ArticleMetaData;
 use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
@@ -23,7 +22,7 @@ impl Component for MetaInfo {
   fn view(&self, ctx: &Context<Self>) -> Html {
     html! {
       <div>
-        <div class="text-center font-bold text-8xl">
+        <div class="text-center font-bold text-8xl pt-2">
           {&ctx.props().emoji}
         </div>
         <h1 class="font-bold text-3xl text-center py-4">

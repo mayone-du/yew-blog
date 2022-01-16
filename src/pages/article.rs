@@ -58,9 +58,14 @@ impl Component for ArticlePage {
 
   fn view(&self, ctx: &Context<Self>) -> Html {
     let loading = html! {
-      <div class="animate-pulse bg-gray-300 w-full h-8"></div>
+      <div class="w-full h-screen">
+        <div class="animate-pulse bg-gray-300 rounded-full w-28 h-28 mb-4 mx-auto"></div>
+        <div class="animate-pulse bg-gray-300 w-2/3 h-8 mb-4 mx-auto"></div>
+        <div class="animate-pulse bg-gray-300 w-1/2 h-4 mb-6 mx-auto"></div>
+        <div class="animate-pulse bg-gray-300 w-10 h-3 mx-auto"></div>
+      </div>
     };
-    match &self.state {
+    let content = match &self.state {
       FetchState::NotFetching => loading,
       FetchState::Fetching => loading,
       FetchState::Success(data) => {
@@ -81,7 +86,7 @@ impl Component for ArticlePage {
 
         let meta_removed_data = meta_section_regexp.replace(&data, "");
         html! {
-          <MainLayout>
+          <div>
             <MetaInfo title={title} description={description} emoji={emoji} created_at={ctx.props().id.clone()} />
             <div class="grid grid-cols-3 lg:gap-6 gap-4">
               <div class="lg:col-span-2 col-span-3 border border-gray-100 rounded p-4 bg-white">
@@ -89,10 +94,13 @@ impl Component for ArticlePage {
               </div>
               <Sidebar />
             </div>
-          </MainLayout>
+          </div>
         }
       }
-      FetchState::Failed(err) => html! { err },
+      FetchState::Failed(err) => html! { <div class="font-bold text-red-600">{err}</div> },
+    };
+    html! {
+      <MainLayout>{content}</MainLayout>
     }
   }
 }

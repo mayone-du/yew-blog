@@ -49,9 +49,9 @@ impl Component for ProfilePage {
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
     let loading = html! {
-      <div>{"Loading..."}</div>
+      <div class="h-screen"></div>
     };
-    match &self.state {
+    let content = match &self.state {
       FetchState::NotFetching => loading,
       FetchState::Fetching => loading,
       FetchState::Success(data) => {
@@ -74,7 +74,7 @@ impl Component for ProfilePage {
         let meta_removed_data = meta_section_regexp.replace(&data, "");
 
         html! {
-          <MainLayout>
+          <div>
             <MetaInfo title={title} description={description} emoji={emoji} created_at={""} />
             <div class="grid grid-cols-3 lg:gap-6 gap-4">
               <div class="lg:col-span-2 col-span-3 border border-gray-200 rounded p-4 bg-white">
@@ -82,10 +82,15 @@ impl Component for ProfilePage {
               </div>
               <Sidebar />
             </div>
-          </MainLayout>
+          </div>
         }
       }
       FetchState::Failed(err) => html! { err },
+    };
+    html! {
+      <MainLayout>
+        {content}
+      </MainLayout>
     }
   }
 }

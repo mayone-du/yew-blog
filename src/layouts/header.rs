@@ -22,7 +22,7 @@ impl Component for Header {
           <Link<AppRoutes> classes="text-2xl font-bold" to={AppRoutes::Home}>{"mayoblog"}</Link<AppRoutes>>
         </div>
         <nav>
-          <ul class="grid grid-cols-3 gap-4">
+          <ul class="grid grid-cols-3 gap-3">
             <li class="col-span-1">
               <Link<AppRoutes> classes="block text-blue-500 underline transition-all hover:no-underline" to={AppRoutes::Home}>{"Home"}</Link<AppRoutes>>
             </li>
