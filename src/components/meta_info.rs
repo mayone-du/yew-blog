@@ -6,7 +6,7 @@ pub struct Props {
   pub description: String,
   pub emoji: String,
   pub created_at: String,
-  // pub updated_at: String,
+  pub updated_at: String,
 }
 
 pub struct MetaInfo;

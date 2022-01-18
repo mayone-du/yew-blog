@@ -24,6 +24,7 @@ pub struct OtherMetaData {
   pub description: String,
   pub emoji: String,
   pub is_published: bool,
+  pub updated_at: String,
 }
 
 #[derive(Serialize, Deserialize)]

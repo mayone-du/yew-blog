@@ -87,7 +87,7 @@ impl Component for ArticlePage {
         let meta_removed_data = meta_section_regexp.replace(&data, "");
         html! {
           <div>
-            <MetaInfo title={title} description={description} emoji={emoji} created_at={ctx.props().id.clone()} />
+            <MetaInfo title={title} description={description} emoji={emoji} created_at={ctx.props().id.clone()} updated_at={""} />
             <div class="grid grid-cols-3 lg:gap-6 gap-4">
               <div class="lg:col-span-2 col-span-3 border border-gray-100 rounded p-4 bg-white">
                 <Markdown markdwon_data={meta_removed_data.to_string()} />

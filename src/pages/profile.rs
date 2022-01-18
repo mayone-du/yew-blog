@@ -59,10 +59,11 @@ impl Component for ProfilePage {
 
         let meta_section_regexp = regex::Regex::new(r"---([^---]*)---").unwrap();
 
-        let (meta_title_regexp, meta_description_regexp, meta_emoji_regexp) = (
+        let (meta_title_regexp, meta_description_regexp, meta_emoji_regexp, meta_updated_at_regexp) = (
           create_meta_regexp("title"),
           create_meta_regexp("description"),
           create_meta_regexp("emoji"),
+          create_meta_regexp("updated_at"),
         );
         let meta_section = capture_val_by_regexp(&meta_section_regexp, &data);
 
@@ -70,12 +71,13 @@ impl Component for ProfilePage {
         let title = capture_val_by_regexp(&meta_title_regexp, &meta_section);
         let description = capture_val_by_regexp(&meta_description_regexp, &meta_section);
         let emoji = capture_val_by_regexp(&meta_emoji_regexp, &meta_section);
+        let updated_at = capture_val_by_regexp(&meta_updated_at_regexp, &meta_section);
 
         let meta_removed_data = meta_section_regexp.replace(&data, "");
 
         html! {
           <div>
-            <MetaInfo title={title} description={description} emoji={emoji} created_at={""} />
+            <MetaInfo title={title} description={description} emoji={emoji} created_at={""} updated_at={updated_at} />
             <div class="grid grid-cols-3 lg:gap-6 gap-4">
               <div class="lg:col-span-2 col-span-3 border border-gray-200 rounded p-4 bg-white">
                 <Markdown markdwon_data={meta_removed_data.to_string()} />
