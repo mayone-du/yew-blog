@@ -3,7 +3,7 @@ use crate::components::markdown::Markdown;
 use crate::components::meta_info::MetaInfo;
 use crate::layouts::main_layout::MainLayout;
 use crate::layouts::sidebar::Sidebar;
-use crate::utils::index::{capture_val_by_regexp, create_meta_regexp};
+use crate::utils::index::{capture_val_by_regexp, create_meta_regexp, create_meta_section_regexp};
 use regex;
 use yew::{html, Component, Context, Html, Properties};
 
@@ -70,7 +70,7 @@ impl Component for ArticlePage {
       FetchState::Fetching => loading,
       FetchState::Success(data) => {
         // メタデータを抽出
-        let meta_section_regexp = regex::Regex::new(r"---([^---]*)---").unwrap();
+        let meta_section_regexp = create_meta_section_regexp();
 
         let (meta_title_regexp, meta_description_regexp, meta_emoji_regexp) = (
           create_meta_regexp("title"),
