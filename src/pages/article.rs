@@ -1,10 +1,10 @@
 use crate::client::{fetch::fetch_row_text, state::FetchMessage, state::FetchState};
+use crate::components::article_top_loading::ArticleTopLoading;
 use crate::components::markdown::Markdown;
 use crate::components::meta_info::MetaInfo;
 use crate::layouts::main_layout::MainLayout;
 use crate::layouts::sidebar::Sidebar;
 use crate::utils::index::{capture_val_by_regexp, create_meta_regexp, create_meta_section_regexp};
-use regex;
 use yew::{html, Component, Context, Html, Properties};
 
 #[derive(PartialEq, Properties)]
@@ -57,18 +57,11 @@ impl Component for ArticlePage {
   }
 
   fn view(&self, ctx: &Context<Self>) -> Html {
-    let loading = html! {
-      <div class="w-full h-screen">
-        <div class="animate-pulse bg-gray-300 rounded-full w-28 h-28 mb-4 mx-auto"></div>
-        <div class="animate-pulse bg-gray-300 w-2/3 h-8 mb-4 mx-auto"></div>
-        <div class="animate-pulse bg-gray-300 w-1/2 h-4 mb-6 mx-auto"></div>
-        <div class="animate-pulse bg-gray-300 w-10 h-3 mx-auto"></div>
-      </div>
-    };
     let content = match &self.state {
-      FetchState::NotFetching => loading,
-      FetchState::Fetching => loading,
+      FetchState::NotFetching => html! { <ArticleTopLoading /> },
+      FetchState::Fetching => html! { <ArticleTopLoading /> },
       FetchState::Success(data) => {
+        web_sys::console::log_1(&wasm_bindgen::JsValue::from_str(&data));
         // メタデータを抽出
         let meta_section_regexp = create_meta_section_regexp();
 
@@ -89,7 +82,7 @@ impl Component for ArticlePage {
           <div>
             <MetaInfo title={title} description={description} emoji={emoji} created_at={ctx.props().id.clone()} updated_at={""} />
             <div class="grid grid-cols-3 lg:gap-6 gap-4">
-              <div class="lg:col-span-2 col-span-3 border border-gray-100 rounded p-4 bg-white">
+              <div class="lg:col-span-2 col-span-3 border border-gray-100 rounded-lg p-4 bg-white">
                 <Markdown markdwon_data={meta_removed_data.to_string()} />
               </div>
               <Sidebar />

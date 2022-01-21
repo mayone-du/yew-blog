@@ -1,5 +1,6 @@
 use crate::client::fetch::fetch_row_text;
 use crate::client::state::{FetchMessage, FetchState};
+use crate::components::article_top_loading::ArticleTopLoading;
 use crate::components::markdown::Markdown;
 use crate::components::meta_info::MetaInfo;
 use crate::constants::vars::PROFILE_URL;
@@ -48,12 +49,9 @@ impl Component for ProfilePage {
   }
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
-    let loading = html! {
-      <div class="h-screen"></div>
-    };
     let content = match &self.state {
-      FetchState::NotFetching => loading,
-      FetchState::Fetching => loading,
+      FetchState::NotFetching => html! { <ArticleTopLoading /> },
+      FetchState::Fetching => html! { <ArticleTopLoading /> },
       FetchState::Success(data) => {
         // メタデータを抽出
 
@@ -79,7 +77,7 @@ impl Component for ProfilePage {
           <div>
             <MetaInfo title={title} description={description} emoji={emoji} created_at={""} updated_at={updated_at} />
             <div class="grid grid-cols-3 lg:gap-6 gap-4">
-              <div class="lg:col-span-2 col-span-3 border border-gray-200 rounded p-4 bg-white">
+              <div class="lg:col-span-2 col-span-3 border border-gray-100 rounded-lg p-4 bg-white">
                 <Markdown markdwon_data={meta_removed_data.to_string()} />
               </div>
               <Sidebar />

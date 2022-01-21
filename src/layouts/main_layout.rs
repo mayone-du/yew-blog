@@ -22,7 +22,7 @@ impl Component for MainLayout {
     html! {
       <div>
         <Header />
-        <main class="lg:px-80 px-4 py-6 bg-blue-50">
+        <main class="lg:px-72 px-4 py-6 bg-blue-50">
           { for ctx.props().children.iter() }
         </main>
         <Footer />

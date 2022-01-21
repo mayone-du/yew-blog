@@ -22,7 +22,7 @@ impl Component for Markdown {
     let mut html_buf = String::new();
     push_html(&mut html_buf, parser);
     html! {
-      <article class="prose prose-slate mx-auto">
+      <article class="prose prose-slate prose-headings:border-b-2 prose-headings:border-gray-100 prose-headings:pb-2 mx-auto py-2">
         <RawHTML inner_html={html_buf} />
       </article>
     }
