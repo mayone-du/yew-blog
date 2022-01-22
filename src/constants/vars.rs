@@ -11,6 +11,8 @@ pub const ARTICLE_BASE_URL: &str =
   "https://raw.githubusercontent.com/mayone-du/blog-contents/main/articles/";
 pub const PROFILE_URL: &str =
   "https://raw.githubusercontent.com/mayone-du/blog-contents/main/others/profile.md";
+pub const RESUME_URL: &str =
+  "https://raw.githubusercontent.com/mayone-du/resume/main/docs/Resume.md";
 
 // pub const ARTICLE_LIST_API_URL: &str =
 //   "https://api.github.com/repos/mayone-du/blog-contents/contents/articles";
