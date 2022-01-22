@@ -13,7 +13,7 @@ impl Component for ArticleTopLoading {
     Self
   }
 
-  fn view(&self, ctx: &Context<Self>) -> Html {
+  fn view(&self, _ctx: &Context<Self>) -> Html {
     html! {
         <div class="w-full h-screen">
           <div class="animate-pulse bg-gray-300 rounded-full w-28 h-28 mb-4 mx-auto"></div>
