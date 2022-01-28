@@ -6,7 +6,7 @@ use yew_router::components::Link;
 pub struct Props;
 
 pub struct Header {
-  isMenuOpen: bool,
+  is_menu_open: bool,
 }
 
 pub enum Msg {
@@ -18,13 +18,15 @@ impl Component for Header {
   type Properties = Props;
 
   fn create(_ctx: &Context<Self>) -> Self {
-    Header { isMenuOpen: false }
+    Header {
+      is_menu_open: false,
+    }
   }
 
   fn update(&mut self, _ctx: &Context<Self>, msg: Self::Message) -> bool {
     match msg {
       Msg::ToggleMenu => {
-        self.isMenuOpen = !self.isMenuOpen;
+        self.is_menu_open = !self.is_menu_open;
         true
       }
     }
@@ -39,7 +41,7 @@ impl Component for Header {
         <button class="md:hidden block" onclick={ctx.link().callback(|_| Msg::ToggleMenu)}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 24 24"><path d="M4 22h-4v-4h4v4zm0-12h-4v4h4v-4zm0-8h-4v4h4v-4zm3 0v4h17v-4h-17zm0 12h17v-4h-17v4zm0 8h17v-4h-17v4z"/></svg>
         </button>
-        {if self.isMenuOpen {
+        {if self.is_menu_open {
           html! {
             <nav class="absolute top-14 left-0 right-0 bg-white md:hidden flex flex-col md:flex-row items-center justify-between">
               <ul class="text-center">
