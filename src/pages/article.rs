@@ -1,7 +1,7 @@
 use crate::client::{fetch::fetch_row_text, state::FetchMessage, state::FetchState};
-use crate::components::article_top_loading::ArticleTopLoading;
 use crate::components::markdown::Markdown;
 use crate::components::meta_info::MetaInfo;
+use crate::components::meta_info_loading::MetaInfoLoading;
 use crate::layouts::main_layout::MainLayout;
 use crate::layouts::sidebar::Sidebar;
 use crate::utils::index::{capture_val_by_regexp, create_meta_regexp, create_meta_section_regexp};
@@ -58,8 +58,8 @@ impl Component for ArticlePage {
 
   fn view(&self, ctx: &Context<Self>) -> Html {
     let content = match &self.state {
-      FetchState::NotFetching => html! { <ArticleTopLoading /> },
-      FetchState::Fetching => html! { <ArticleTopLoading /> },
+      FetchState::NotFetching => html! { <MetaInfoLoading /> },
+      FetchState::Fetching => html! { <MetaInfoLoading /> },
       FetchState::Success(data) => {
         if &data == &"404: Not Found" {
           html! { <div>{data}</div> }

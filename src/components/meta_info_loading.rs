@@ -3,9 +3,9 @@ use yew::{html, Component, Context, Html, Properties};
 #[derive(PartialEq, Properties)]
 pub struct Props;
 
-pub struct ArticleTopLoading;
+pub struct MetaInfoLoading;
 
-impl Component for ArticleTopLoading {
+impl Component for MetaInfoLoading {
   type Message = ();
   type Properties = Props;
 

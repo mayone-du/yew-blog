@@ -1,8 +1,8 @@
 use crate::client::fetch::fetch_row_text;
 use crate::client::state::{FetchMessage, FetchState};
-use crate::components::article_top_loading::ArticleTopLoading;
 use crate::components::markdown::Markdown;
 use crate::components::meta_info::MetaInfo;
+use crate::components::meta_info_loading::MetaInfoLoading;
 use crate::constants::vars::PROFILE_URL;
 use crate::layouts::main_layout::MainLayout;
 use crate::layouts::sidebar::Sidebar;
@@ -50,8 +50,8 @@ impl Component for ProfilePage {
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
     let content = match &self.state {
-      FetchState::NotFetching => html! { <ArticleTopLoading /> },
-      FetchState::Fetching => html! { <ArticleTopLoading /> },
+      FetchState::NotFetching => html! { <MetaInfoLoading /> },
+      FetchState::Fetching => html! { <MetaInfoLoading /> },
       FetchState::Success(data) => {
         // メタデータを抽出
 

@@ -2,6 +2,7 @@ use crate::client::{
   fetch::fetch_row_text,
   state::{FetchMessage, FetchState},
 };
+use crate::components::article_list_loading::ArticleListLoading;
 use crate::constants::vars::ARTICLE_LIST_META_URL;
 use crate::meta::data_list::ArticleMetaDataList;
 use crate::routes::app_routes::AppRoutes;
@@ -48,46 +49,9 @@ impl Component for ArticleList {
   }
 
   fn view(&self, _ctx: &Context<Self>) -> Html {
-    let loading = html! {
-      <ul class="grid lg:gap-6 gap-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
-        <li class="col-span-1 h-60 rounded-lg shadow-sm overflow-hidden bg-white">
-          <div class="bg-blue-100 border-b border-gray-100 w-full py-6">
-            <div class="w-[72px] h-[72px] mx-auto rounded-full bg-gray-300 animate-pulse"></div>
-          </div>
-          <div class="p-4">
-            <div class="animate-pulse bg-gray-300 w-full h-6 mb-3 rounded"></div>
-            <div class="animate-pulse bg-gray-300 w-full h-4 mb-1 rounded"></div>
-            <div class="animate-pulse bg-gray-300 w-full h-4 mb-3 rounded"></div>
-            <div class="animate-pulse bg-gray-300 w-20 h-3 ml-auto rounded"></div>
-          </div>
-        </li>
-        <li class="col-span-1 h-60 rounded-lg shadow-sm overflow-hidden bg-white">
-          <div class="bg-blue-100 border-b border-gray-100 w-full py-6">
-            <div class="w-[72px] h-[72px] mx-auto rounded-full bg-gray-300 animate-pulse"></div>
-          </div>
-          <div class="p-4">
-            <div class="animate-pulse bg-gray-300 w-full h-6 mb-3 rounded"></div>
-            <div class="animate-pulse bg-gray-300 w-full h-4 mb-1 rounded"></div>
-            <div class="animate-pulse bg-gray-300 w-full h-4 mb-3 rounded"></div>
-            <div class="animate-pulse bg-gray-300 w-20 h-3 ml-auto rounded"></div>
-          </div>
-        </li>
-        <li class="col-span-1 h-60 rounded-lg shadow-sm overflow-hidden bg-white">
-          <div class="bg-blue-100 border-b border-gray-100 w-full py-6">
-            <div class="w-[72px] h-[72px] mx-auto rounded-full bg-gray-300 animate-pulse"></div>
-          </div>
-          <div class="p-4">
-            <div class="animate-pulse bg-gray-300 w-full h-6 mb-3 rounded"></div>
-            <div class="animate-pulse bg-gray-300 w-full h-4 mb-1 rounded"></div>
-            <div class="animate-pulse bg-gray-300 w-full h-4 mb-3 rounded"></div>
-            <div class="animate-pulse bg-gray-300 w-20 h-3 ml-auto rounded"></div>
-          </div>
-        </li>
-      </ul>
-    };
     match &self.response {
-      FetchState::NotFetching => loading,
-      FetchState::Fetching => loading,
+      FetchState::NotFetching => html! { <ArticleListLoading loading_cols={9} /> },
+      FetchState::Fetching => html! { <ArticleListLoading loading_cols={9} /> },
       FetchState::Success(data) => {
         let json_data: ArticleMetaDataList = serde_json::from_str(&data).unwrap();
         html! {
