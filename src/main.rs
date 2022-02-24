@@ -49,11 +49,11 @@ fn switch(routes: &AppRoutes) -> Html {
   }
 }
 
-#[function_component(Main)]
-fn app() -> Html {
-  html! {
-    <BrowserRouter>
-      <Switch<routes::app_routes::AppRoutes> render={Switch::render(switch)} />
-    </BrowserRouter>
-  }
-}
+// #[function_component(Main)]
+// fn app() -> Html {
+//   html! {
+//     <BrowserRouter>
+//       <Switch<routes::app_routes::AppRoutes> render={Switch::render(switch)} />
+//     </BrowserRouter>
+//   }
+// }
