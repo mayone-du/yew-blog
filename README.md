@@ -17,6 +17,10 @@ npm run build:talwindcss
 trunk serve
 ```
 
+3. GitHub でトークンを発行し、.env に `GITHUB_API_TOKEN` というキーで保存
+
+https://github.com/settings/tokens
+
 <!-- GraphQLを使う場合↓ -->
 <!-- download the schema.docs.graphql from github.
 https://docs.github.com/ja/graphql/overview/public-schema -->
